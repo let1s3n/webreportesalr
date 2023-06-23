@@ -13,7 +13,7 @@ export async function middleware(request) {
       jwt.value,
       new TextEncoder().encode(process.env.NEXT_PUBLIC_SECRET)
     );
-    console.log(payload);
+    console.log("PAYLOAD:", payload);
     return NextResponse.next();
   } catch (error) {
     console.error(error);
