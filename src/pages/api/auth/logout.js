@@ -8,7 +8,7 @@ export default function logouthandler(req, res) {
   }
 
   try {
-    verify(myTokenName, process.env.SECRET);
+    verify(myTokenName, process.env.NEXT_PUBLIC_SECRET);
 
     const serialized = serialize("myTokenName", null, {
       httpOnly: true,

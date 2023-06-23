@@ -7,7 +7,7 @@ export default function profileHandler(req, res) {
   }
 
   try {
-    const { email } = verify(myTokenName, process.env.SECRET);
+    const { email } = verify(myTokenName, process.env.NEXT_PUBLIC_SECRET);
     return res.status(200).json({ email: email });
   } catch (error) {
     return res.status(401).json({ error: "invalid token" });

@@ -7,7 +7,7 @@ export async function dbConnect() {
   if (conn.isConnected) return;
 
   const db = await connect(
-    process.env.MONGODB_URL ||
+    process.env.NEXT_PUBLIC_MONGODB_URL ||
       "mongodb://127.0.0.1:27017/nextjsmongodb?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.0"
   );
   conn.isConnected = db.connections[0].readyState;

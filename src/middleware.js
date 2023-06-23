@@ -11,7 +11,7 @@ export async function middleware(request) {
   try {
     const { payload } = await jwtVerify(
       jwt.value,
-      new TextEncoder().encode(process.env.SECRET)
+      new TextEncoder().encode(process.env.NEXT_PUBLIC_SECRET)
     );
     console.log(payload);
     return NextResponse.next();

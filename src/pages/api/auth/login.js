@@ -18,7 +18,7 @@ export default async function loginHandler(req, res) {
         email: email,
         /* username: username, */
       },
-      process.env.SECRET
+      process.env.NEXT_PUBLIC_SECRET
     );
 
     const serialized = serialize("myTokenName", token, {
