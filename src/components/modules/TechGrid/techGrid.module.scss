@@ -1,0 +1,21 @@
+@import '@/sass/abstracts/variables';
+@import 'bootstrap/scss/mixins';
+
+.techGrid {
+  column-gap: 1.5rem;
+  row-gap: 1.5rem;
+  margin: 54px auto;
+  width: 75%;
+  /* width: fit-content; */
+
+  @include media-breakpoint-up(xl) {
+    width: 748px;
+  }
+  .icon {
+    font-size: 50px;
+
+    @include media-breakpoint-up(xl) {
+      font-size: 100px;
+    }
+  }
+}

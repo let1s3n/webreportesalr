@@ -1,0 +1,41 @@
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
+
+$utilities: (
+  'font-size': (
+    responsive: true,
+    rfs: false,
+    property: font-size,
+    class: fs,
+    values: $font-sizes,
+  ),
+);
+
+@import 'bootstrap/scss/root';
+@import 'bootstrap/scss/utilities';
+
+$utilities: map-merge(
+  $utilities,
+  (
+    'color':
+      map-merge(
+        map-get($utilities, 'color'),
+        (
+          responsive: true,
+        )
+      ),
+  )
+);
+
+$utilities: map-merge(
+  $utilities,
+  (
+    'top':
+      map-merge(
+        map-get($utilities, 'top'),
+        (
+          responsive: true,
+        )
+      ),
+  )
+);

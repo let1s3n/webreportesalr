@@ -1,7 +1,7 @@
 import React from "react";
-
+import Home from "@/components/templates/Home/home";
 const IndexPage = () => {
-  return <div>Home</div>;
+  return <Home />;
 };
 
 export default IndexPage;

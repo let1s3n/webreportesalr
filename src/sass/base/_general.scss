@@ -1,0 +1,59 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ol,
+ul,
+dl {
+  margin: 0px;
+}
+
+.kalekoBold {
+  font-family: 'kaleko-bold';
+}
+
+.fs-14 {
+  font-size: $font-size-sm;
+}
+
+/* .form-label {
+  margin: 0 !important;
+  position: absolute !important;
+  top: -12px !important;
+  left: 16px !important;
+  background: #11121b !important;
+  color: #ffffff !important;
+}
+
+.form-control {
+  // background: #11121b !important;
+  border: 2px solid #ffffff !important;
+  border-radius: 4px !important;
+  color: #ffffff !important;
+
+  &:not(textarea) {
+    height: 58px !important;
+
+    @include media-breakpoint-up(xl) {
+      width: 362px !important;
+    }
+  }
+} */
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb%28255, 255, 255%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.nav-tabs {
+  .nav-link {
+    &.active {
+      border-bottom: 2px solid #ffffff !important;
+    }
+  }
+}

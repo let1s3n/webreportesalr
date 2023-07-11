@@ -7,6 +7,7 @@ const Create = () => {
     username: "",
     email: "",
     password: "",
+    isAdmin: false,
   });
   const router = useRouter();
 
@@ -50,6 +51,13 @@ const Create = () => {
           placeholder="password"
           onChange={handleChange}
         />
+        <input
+          type="checkbox"
+          id="isAdmin"
+          name="isAdmin"
+          value={true}
+          onChange={handleChange}
+        ></input>
         <button type="submit">Create</button>
       </form>
     </div>

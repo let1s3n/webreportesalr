@@ -22,6 +22,12 @@ const userSchema = new Schema(
       trim: true,
       maxLength: [100, "password is too long"],
     },
+    roles: [
+      {
+        ref: "Role",
+        type: Schema.Types.ObjectId,
+      },
+    ],
   },
   {
     timestamps: true,
@@ -29,4 +35,5 @@ const userSchema = new Schema(
   }
 );
 
-export default models.User || model("User", userSchema);
+const User = models?.User || model("User", userSchema);
+export default User;

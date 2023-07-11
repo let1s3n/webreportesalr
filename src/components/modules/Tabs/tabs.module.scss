@@ -1,0 +1,8 @@
+.customRow {
+  justify-content: center;
+  & > div {
+    &:nth-child(2) {
+      margin-top: 67px;
+    }
+  }
+}

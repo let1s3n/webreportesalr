@@ -1,0 +1,21 @@
+@import "@/sass/abstracts/variables";
+@import "bootstrap/scss/mixins";
+
+.customNavbar {
+  height: 80px;
+  background: #f0f0f0;
+
+  .logo {
+    width: 40px;
+
+    @include media-breakpoint-up(md) {
+      width: 53px;
+    }
+  }
+
+  .toggler {
+    padding: 0px !important;
+    border: none !important;
+    color: #ffffff !important;
+  }
+}
