@@ -40,7 +40,7 @@ export default async function loginHandler(req, res) {
     /* NextResponse.next().headers.append("Set-Cookie", serialized); */
     return res.json("login route");
     console.log("req.url: ", req.url);
-    /* return NextResponse.redirect(new URL("/", req.url)); */
+    
   }
   /* return NextResponse.json(
     { error: "invalid email or password" },
