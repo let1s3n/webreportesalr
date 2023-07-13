@@ -14,7 +14,10 @@ const NavBar = () => {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    getPayload();
+    if (currentPath !== "/login") {
+      getPayload();
+    }
+
     console.log("currentPath: ", currentPath)
   }, [currentPath])
 
