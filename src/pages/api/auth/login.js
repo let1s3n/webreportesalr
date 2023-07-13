@@ -30,7 +30,7 @@ export default async function loginHandler(req, res) {
     );
 
     const serialized = serialize("myTokenName", token, {
-      /* httpOnly: true, */
+      httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
       maxAge: 1000 * 60 * 60 * 24 * 30,
@@ -39,7 +39,6 @@ export default async function loginHandler(req, res) {
     res.setHeader("Set-Cookie", serialized);
     /* NextResponse.next().headers.append("Set-Cookie", serialized); */
     return res.json("login route");
-    console.log("req.url: ", req.url);
     
   }
   /* return NextResponse.json(
