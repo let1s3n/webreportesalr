@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Container } from 'react-bootstrap';
 import { useRouter } from "next/router";
 
 const dashboard = () => {
@@ -11,7 +12,8 @@ const dashboard = () => {
   const getProfile = async () => {
     try {
       const response = await axios.get("/api/profile");
-      setUser(response.data);
+      console.log("response data: ", response.data)
+      setUser({ email: response.data.email, username: response.data.username });
     } catch (error) {
       console.log("Error: ", error);
     }
@@ -27,12 +29,12 @@ const dashboard = () => {
     }
   };
   return (
-    <div>
+    <Container>
       <h1>Dashboard</h1>
       <pre>{JSON.stringify(user, null, 2)}</pre>
       <button onClick={getProfile}>get profile</button>
       <button onClick={logout}>Logout</button>
-    </div>
+    </Container>
   )
 }
 

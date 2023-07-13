@@ -7,11 +7,13 @@ export default function profileHandler(req, res) {
   }
 
   try {
-    const { email, username } = verify(
+    const { email, username, roles } = verify(
       myTokenName,
       process.env.NEXT_PUBLIC_SECRET
     );
-    return res.status(200).json({ email: email, username: username });
+    return res
+      .status(200)
+      .json({ email: email, username: username, roles: roles });
   } catch (error) {
     return res.status(401).json({ error: "invalid token" });
   }
