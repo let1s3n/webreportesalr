@@ -1,0 +1,35 @@
+@import "@/sass/abstracts/variables";
+@import "bootstrap/scss/mixins";
+
+.mainContainer {
+  padding: 1rem;
+  row-gap: 2rem;
+  @include media-breakpoint-up(xl) {
+    column-gap: 5rem;
+    padding: 2rem 0px;
+  }
+}
+.containerPrecioSpot {
+  width: 100%;
+  padding: 1rem;
+  background: #252628;
+  display: flex;
+  /* column-gap: 1.5rem; */
+
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  flex-direction: column;
+  row-gap: 1rem;
+  align-items: center;
+  @include media-breakpoint-up(md) {
+    width: 630px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.kitcoChart {
+  width: 100%;
+  @include media-breakpoint-up(md) {
+    width: 450px;
+  }
+}

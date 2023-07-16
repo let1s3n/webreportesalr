@@ -7,6 +7,8 @@ const ChartComponent = ({ data }) => {
       options={{
         chart: {
           id: "basic-bar",
+          type: "line",
+          width: "700",
           animations: {
             initialAnimation: {
               enabled: false
@@ -38,7 +40,20 @@ const ChartComponent = ({ data }) => {
               return val.toFixed(2);
             }
           }
-        }
+        },
+        responsive: [{
+          breakpoint: 600,
+          options: {
+            chart: {
+              width: "100%"
+            },
+            xaxis: {
+              /* type: "datetime", */
+              tickAmount: 10,
+            },
+          },
+
+        }]
       }}
       series={[
         {
@@ -46,8 +61,7 @@ const ChartComponent = ({ data }) => {
           data: data
         }
       ]}
-      type="line"
-      width="800"
+
     />
   )
 }
