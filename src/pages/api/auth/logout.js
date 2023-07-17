@@ -1,13 +1,14 @@
 import { verify } from "jsonwebtoken";
 import { serialize } from "cookie";
 export default function logouthandler(req, res) {
-  const { myTokenName } = req.cookies;
+  /* const { myTokenName } = req.cookies; */
 
-  if (!myTokenName) {
+  /* if (!myTokenName) {
     return res.status(401).json({ error: "no token" });
-  }
+  } */
 
   try {
+    const { myTokenName } = req.cookies;
     verify(myTokenName, process.env.NEXT_PUBLIC_SECRET);
 
     const serialized = serialize("myTokenName", null, {

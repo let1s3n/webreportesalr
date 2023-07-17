@@ -41,10 +41,7 @@ const preciosInternacionales = () => {
 
   const getLatestRatesGoldSilver = async () => {
     const response = await axios.get(`${process.env.NEXT_PUBLIC_METALS_API}latest?access_key=${process.env.NEXT_PUBLIC_ACCESS_KEY}&base=USD&symbols=XAU-BID`);
-    console.log("RESPONSE: ", response.data);
     const response3 = await axios.get(`${process.env.NEXT_PUBLIC_METALS_API}lowest-highest/${todayISO}?access_key=${process.env.NEXT_PUBLIC_ACCESS_KEY}&base=USD&symbols=XAU-BID`);
-    console.log("RESPONSE: ", response.data);
-    console.log("RESPONSE3: ", response3.data);
 
     setPriceSpot(response.data.rates["USDXAU-BID"]);
     setLowPrice(1 / response3.data.rates.low);
@@ -52,19 +49,11 @@ const preciosInternacionales = () => {
 
   const getTimeSeriesRatesGoldSilver = async () => {
     let data = [];
-
-
     const oneMonthBack = new Date(subtractionMonth).toISOString().substring(0, 10);
-
-
-    console.log("oneMonthBack: ", oneMonthBack);
-
     const response2 = await axios.get(`${process.env.NEXT_PUBLIC_METALS_API}timeseries?access_key=${process.env.NEXT_PUBLIC_ACCESS_KEY}&start_date=${oneMonthBack}&end_date=${yesterday}&base=USD&symbols=XAU-BID`);
-    console.log("RESPONSE TIME SERIES: ", response2.data.rates);
 
     for (const [key, value] of Object.entries(response2.data.rates)) {
-      console.log(`${key}: ${value["XAU-BID"]}`);
-
+      /* console.log(`${key}: ${value["XAU-BID"]}`); */
       data.push({ x: key, y: 1 / value["XAU-BID"] });
     }
     setData([...data]);

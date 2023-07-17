@@ -1,55 +1,40 @@
+import { useContext } from 'react';
 import usePathName from '@/hooks/usePathName';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import axios from 'axios';
-
+import { useRouter } from "next/router";
+import { MyContext } from '@/MyContext';
 import styles from './navbar.module.scss';
 const NavBar = () => {
   const currentPath = usePathName();
   const [show, setShow] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
+  const { isAdmin, isLogged, setIsAdmin, setIsLogged } = useContext(MyContext);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  useEffect(() => {
-    if (currentPath !== "/login") {
+  const router = useRouter();
+  /* useEffect(() => {
+    if (currentPath !== "/login" || currentPath !== "/dashboard") {
       getUser();
       console.log("LOGOUT")
     }
 
     console.log("currentPath: ", currentPath)
-  }, [currentPath])
+  }, [currentPath]) */
 
-  const getUser = async () => {
-    try {
-      const response = await axios.get("/api/profile");
-      const roles = response.data.roles;
-      console.log("DATA: ", response.data.roles)
-      setIsLogged(true);
-      for (let role of roles) {
-        if (role.name === "admin") {
-          setIsAdmin(true);
-        }
-      }
 
-    } catch (error) {
-      setIsAdmin(false);
-      setIsLogged(false);
-      console.log("Error: ", error);
-    }
-  }
 
   const logout = async () => {
     try {
       await axios.post("/api/auth/logout");
       setIsLogged(false);
-      /* router.push("/"); */
+      setIsAdmin(false);
+      router.push("/login");
     } catch (error) {
       console.log(error);
-      /* router.push("/"); */
+      router.push("/login");
     }
   };
 

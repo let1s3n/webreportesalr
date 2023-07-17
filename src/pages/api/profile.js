@@ -1,11 +1,12 @@
 import { verify } from "jsonwebtoken";
 export default function profileHandler(req, res) {
-  const { myTokenName } = req.cookies;
-  if (!myTokenName) {
+  /* const { myTokenName } = req.cookies; */
+  /* if (!myTokenName) {
     return res.status(401).json({ error: "Not logged in" });
-  }
+  } */
 
   try {
+    const { myTokenName } = req.cookies;
     const { email, username, roles } = verify(
       myTokenName,
       process.env.NEXT_PUBLIC_SECRET

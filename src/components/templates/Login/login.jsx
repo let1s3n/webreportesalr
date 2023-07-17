@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import axios from "axios";
 import { useRouter } from "next/router";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
+import { MyContext } from '@/MyContext';
 import styles from './login.module.scss'
 const login = () => {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
   });
+  const { setIsAdmin, setIsLogged } = useContext(MyContext);
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -25,10 +27,23 @@ const login = () => {
       if (response.status === 200) {
         router.push("/dashboard");
       }
+
+      const response2 = await axios.get("/api/profile");
+      const roles = response2.data.roles;
+      setIsLogged(true);
+      for (let role of roles) {
+        if (role.name === "admin") {
+          setIsAdmin(true);
+        }
+      }
     } catch (error) {
+      console.log("Error: ", error);
+      setIsAdmin(false);
+      setIsLogged(false);
       console.log("Error: ", error);
     }
   };
+
   return (
     <Container className="g-0">
       <Form className={styles.customForm} onSubmit={handleSubmit}>

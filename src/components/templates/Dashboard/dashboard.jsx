@@ -12,7 +12,6 @@ const dashboard = () => {
   const getProfile = async () => {
     try {
       const response = await axios.get("/api/profile");
-      console.log("response data: ", response.data)
       setUser({ email: response.data.email, username: response.data.username });
     } catch (error) {
       console.log("Error: ", error);
