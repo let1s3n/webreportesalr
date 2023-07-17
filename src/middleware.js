@@ -39,5 +39,5 @@ export async function isAdmin(request, payload) {
 }
 
 export const config = {
-  matcher: ["/", "/dashboard", "/create", "/admin/:path*"],
+  matcher: ["/dashboard", "/create", "/admin/:path*"],
 };

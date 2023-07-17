@@ -10,25 +10,25 @@ const NavBar = () => {
   const currentPath = usePathName();
   const [show, setShow] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   useEffect(() => {
     if (currentPath !== "/login") {
-      getPayload();
+      getUser();
+      console.log("LOGOUT")
     }
 
     console.log("currentPath: ", currentPath)
   }, [currentPath])
 
-  const getPayload = async () => {
+  const getUser = async () => {
     try {
       const response = await axios.get("/api/profile");
-      /* if (response.status === 200) {
-        router.push("/dashboard");
-      } */
       const roles = response.data.roles;
       console.log("DATA: ", response.data.roles)
+      setIsLogged(true);
       for (let role of roles) {
         if (role.name === "admin") {
           setIsAdmin(true);
@@ -37,9 +37,21 @@ const NavBar = () => {
 
     } catch (error) {
       setIsAdmin(false);
+      setIsLogged(false);
       console.log("Error: ", error);
     }
   }
+
+  const logout = async () => {
+    try {
+      await axios.post("/api/auth/logout");
+      setIsLogged(false);
+      /* router.push("/"); */
+    } catch (error) {
+      console.log(error);
+      /* router.push("/"); */
+    }
+  };
 
   return (
     <Navbar
@@ -98,6 +110,20 @@ const NavBar = () => {
                 :
                 null
             }
+            <Link
+              className="position-relative p-0 text-black"
+              href={isLogged ? "/" : "/login"}
+              onClick={isLogged ? logout : null}
+            >
+              {
+                isLogged
+                  ?
+                  "Logout"
+                  :
+                  "Login"
+              }
+
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

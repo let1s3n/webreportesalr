@@ -19,21 +19,13 @@ const dashboard = () => {
     }
   };
 
-  const logout = async () => {
-    try {
-      await axios.post("/api/auth/logout");
-      router.push("/login");
-    } catch (error) {
-      console.log(error);
-      router.push("/login");
-    }
-  };
+  
   return (
     <Container>
       <h1>Dashboard</h1>
       <pre>{JSON.stringify(user, null, 2)}</pre>
       <button onClick={getProfile}>get profile</button>
-      <button onClick={logout}>Logout</button>
+      {/* <button onClick={logout}>Logout</button> */}
     </Container>
   )
 }

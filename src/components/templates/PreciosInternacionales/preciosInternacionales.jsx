@@ -36,6 +36,7 @@ const preciosInternacionales = () => {
     console.log("day: ", today.getDay())
     console.log("hour: ", today.getHours())
     console.log("minutes: ", today.getMinutes()) */
+
   }, [])
 
   const getLatestRatesGoldSilver = async () => {
@@ -69,9 +70,9 @@ const preciosInternacionales = () => {
     setData([...data]);
   }
 
-  const handleObtenerPrecio = () => {
+  /* const handleObtenerPrecio = () => {
     getLatestRatesGoldSilver();
-  }
+  } */
   return (
     <Container className={styles.mainContainer + " g-0 d-flex flex-column flex-md-row"}>
       {/* <h3>Precios Internacionales</h3> */}
@@ -102,7 +103,9 @@ const preciosInternacionales = () => {
           </div>
           <div className="d-flex flex-column align-items-center align-items-md-stretch">
             {
-              (today.getDay() === 5 && today.getHours() >= 15) || (today.getDay() === 6) || (today.getDay() === 0 && today.getHours() <= 16) || (15 <= today.getHours() <= 16)
+              // Para hora peruana sería 16 (5pm) para el día domingo y para ET sería 17 (6pm)
+              // Para hora peruana sería 15 (4pm) para el día viernes y para ET sería 16 (5pm)
+              (today.getDay() === 5 && today.getHours() >= 16) || (today.getDay() === 6) || (today.getDay() === 0 && today.getHours() <= 17) || (today.getHours() === 16 || today.getHours() === 17)
                 ?
                 <>
                   <p className="text-danger fw-bold">Mercado cerrado</p>
