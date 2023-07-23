@@ -1,7 +1,7 @@
 import React from "react";
-import Home from "@/components/templates/Home/home";
+import PreciosInternacionales from "@/components/templates/PreciosInternacionales/preciosInternacionales";
 const IndexPage = () => {
-  return <Home />;
+  return <PreciosInternacionales />;
 };
 
 export default IndexPage;

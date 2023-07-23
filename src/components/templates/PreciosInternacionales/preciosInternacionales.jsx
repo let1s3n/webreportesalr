@@ -14,7 +14,7 @@ const ChartComponent = dynamic(
 const preciosInternacionales = () => {
   const [data, setData] = useState([]);
   const [priceSpot, setPriceSpot] = useState(0);
-  const [lowPrice, setLowPrice] = useState(0);
+  /* const [lowPrice, setLowPrice] = useState(0); */
 
 
   const tzoffset = new Date().getTimezoneOffset() * 60000;
@@ -41,10 +41,10 @@ const preciosInternacionales = () => {
 
   const getLatestRatesGoldSilver = async () => {
     const response = await axios.get(`${process.env.NEXT_PUBLIC_METALS_API}latest?access_key=${process.env.NEXT_PUBLIC_ACCESS_KEY}&base=USD&symbols=XAU-BID`);
-    const response3 = await axios.get(`${process.env.NEXT_PUBLIC_METALS_API}lowest-highest/${todayISO}?access_key=${process.env.NEXT_PUBLIC_ACCESS_KEY}&base=USD&symbols=XAU-BID`);
+    /* const response3 = await axios.get(`${process.env.NEXT_PUBLIC_METALS_API}lowest-highest/${todayISO}?access_key=${process.env.NEXT_PUBLIC_ACCESS_KEY}&base=USD&symbols=XAU-BID`); */
 
     setPriceSpot(response.data.rates["USDXAU-BID"]);
-    setLowPrice(1 / response3.data.rates.low);
+    /* setLowPrice(1 / response3.data.rates.low); */
   }
 
   const getTimeSeriesRatesGoldSilver = async () => {
@@ -81,14 +81,14 @@ const preciosInternacionales = () => {
                 null
             }
 
-            {
+            {/* {
               lowPrice !== 0
                 ?
                 <p className="text-white"><span className="fw-bold">Precio low ($/oz t):</span> {useFormatnumber(parseFloat((lowPrice.toString()).slice(0, ((lowPrice.toString()).indexOf(".")) + 3).toLocaleString()))}</p>
 
                 :
                 null
-            }
+            } */}
           </div>
           <div className="d-flex flex-column align-items-center align-items-md-stretch">
             {

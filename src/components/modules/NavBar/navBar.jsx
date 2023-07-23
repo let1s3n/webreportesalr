@@ -15,14 +15,9 @@ const NavBar = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const router = useRouter();
-  /* useEffect(() => {
-    if (currentPath !== "/login" || currentPath !== "/dashboard") {
-      getUser();
-      console.log("LOGOUT")
-    }
-
-    console.log("currentPath: ", currentPath)
-  }, [currentPath]) */
+  useEffect(() => {
+    getUser();
+  }, [])
 
 
 
@@ -38,6 +33,27 @@ const NavBar = () => {
     }
   };
 
+  const getUser = async () => {
+    try {
+      const response = await axios.get("/api/profile");
+
+      if (response.status === 200) {
+        setIsLogged(true);
+        const roles = response.data.roles;
+        for (let role of roles) {
+          if (role.name === "admin") {
+            setIsAdmin(true);
+          }
+        }
+      }
+      console.log("DATA: ", response.data)
+    } catch (error) {
+      setIsAdmin(false);
+      setIsLogged(false);
+      console.log("Error: ", error);
+    }
+  }
+
   return (
     <Navbar
       className={styles.customNavbar + ' p-0 w-100'}
@@ -45,7 +61,7 @@ const NavBar = () => {
       bg="transparent"
       expand="lg"
     >
-      <Container className="g-0 py-4 px-5" style={{ columnGap: '5rem' }}>
+      <Container className="g-0 py-4 px-3 px-md-5" style={{ columnGap: '5rem' }}>
         <Navbar.Brand
           href="/"
           className="p-0 m-0"
@@ -63,19 +79,19 @@ const NavBar = () => {
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" className={styles.toggler} />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse className={styles.customMenu} id="basic-navbar-nav">
           <Nav
             style={{ columnGap: '2rem', rowGap: '2rem' }}
           >
             <Link className="position-relative p-0 text-black" href="/">
               Inicio
             </Link>
-            <Link
+            {/* <Link
               className="position-relative p-0 text-black"
               href="/precios-internacionales"
             >
               Precios Internacionales
-            </Link>
+            </Link> */}
             <Link
               className="position-relative p-0 text-black"
               href="/dashboard"

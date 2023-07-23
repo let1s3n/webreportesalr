@@ -7,16 +7,23 @@
 
   .logo {
     /* width: 40px; */
-    width: 100px;
+    width: 80px;
 
-    /* @include media-breakpoint-up(md) {
-      width: 53px;
-    } */
+    @include media-breakpoint-up(md) {
+      width: 100px;
+    }
   }
 
   .toggler {
     padding: 0px !important;
     border: none !important;
     /* color: #ffffff !important; */
+  }
+
+  .customMenu {
+    padding: 2rem 0px 0px;
+    @include media-breakpoint-up(md) {
+      padding: 0px;
+    }
   }
 }
