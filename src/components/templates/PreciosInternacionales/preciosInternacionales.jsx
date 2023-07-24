@@ -67,7 +67,8 @@ const preciosInternacionales = () => {
       {/* <h3>Precios Internacionales</h3> */}
 
       <div>
-        <h4 className="mb-4">Último precio bid spot y low (tiempo real)</h4>
+        {/* <h4 className="mb-4">Último precio bid spot y low (tiempo real)</h4> */}
+        <h4 className="mb-4">Último precio bid spot (tiempo real)</h4>
         {/* <Button className="mt-3" onClick={handleObtenerPrecio}>Obtener precio del oro</Button> */}
 
         <div className={styles.containerPrecioSpot}>
