@@ -116,7 +116,8 @@ const preciosInternacionales = () => {
                           <p className="text-white">
                             <span className="fw-bold">El mercado abrirá en:</span> {`${17 - today.getHours()} hrs. ${60 - today.getMinutes()} mins.`}</p>
                           :
-                          null
+                          <p className="text-white">
+                            <span className="fw-bold">El mercado abrirá en:</span> {`${60 - today.getMinutes()} mins.`}</p>
                   }
 
                 </>
