@@ -144,7 +144,7 @@ const preciosInternacionales = () => {
         </a> */}
           <h4 className="mb-3">Último precio bid ($/oz t) (KITCO)</h4>
           <a href="http://www.kitco.com/connecting.html">
-            <img className={styles.kitcoChart} src="http://www.kitco.com/LFgif/au0030lnb.gif" border="0" alt="[Most Recent Quotes from www.kitco.com]" />
+            <img className={styles.kitcoChart} src="https://www.kitco.com/LFgif/au0030lnb.gif" border="0" alt="[Most Recent Quotes from www.kitco.com]" />
           </a>
 
 

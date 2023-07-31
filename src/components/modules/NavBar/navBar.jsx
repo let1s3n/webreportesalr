@@ -26,7 +26,7 @@ const NavBar = () => {
 
 
   const logout = async () => {
-    await handleLogout("popup");
+    handleLogout("popup");
     try {
       await axios.post("/api/auth/logout");
       setIsLogged(false);
