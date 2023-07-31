@@ -35,9 +35,9 @@ export async function isAdmin(request, payload) {
     }
   }
 
-  return NextResponse.redirect(new URL("/dashboard", request.url));
+  return NextResponse.redirect(new URL("/mi-cuenta", request.url));
 }
 
 export const config = {
-  matcher: ["/", "/dashboard", "/create", "/admin/:path*"],
+  matcher: ["/", "/mi-cuenta", "/create", "/admin/:path*"],
 };

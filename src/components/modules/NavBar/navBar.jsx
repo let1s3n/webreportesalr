@@ -1,14 +1,18 @@
 import { useContext } from 'react';
+import { useMsal } from "@azure/msal-react";
 import usePathName from '@/hooks/usePathName';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import axios from 'axios';
+import SignInSignOutButton from "@/ui-components/SignInSignOutButton";
 import { useRouter } from "next/router";
 import { MyContext } from '@/MyContext';
+import { loginRequest } from "@/authConfig";
 import styles from './navbar.module.scss';
 const NavBar = () => {
+  const { instance } = useMsal();
   const currentPath = usePathName();
   const [show, setShow] = useState(false);
   const { isAdmin, isLogged, setIsAdmin, setIsLogged } = useContext(MyContext);
@@ -22,6 +26,7 @@ const NavBar = () => {
 
 
   const logout = async () => {
+    await handleLogout("popup");
     try {
       await axios.post("/api/auth/logout");
       setIsLogged(false);
@@ -51,6 +56,14 @@ const NavBar = () => {
       setIsAdmin(false);
       setIsLogged(false);
       console.log("Error: ", error);
+    }
+  }
+
+  const handleLogout = (logoutType) => {
+    if (logoutType === "popup") {
+      instance.logoutPopup().catch((e) => { console.error(`logoutPopup failed: ${e}`) });
+    } else if (logoutType === "redirect") {
+      instance.logoutRedirect().catch((e) => { console.error(`logoutRedirect failed: ${e}`) });
     }
   }
 
@@ -94,20 +107,29 @@ const NavBar = () => {
             </Link> */}
             <Link
               className="position-relative p-0 text-black"
-              href="/dashboard"
+              href="/mi-cuenta"
             >
-              Dashboard
+              Cuenta
             </Link>
 
             {
               isAdmin
                 ?
-                <Link
-                  className="position-relative p-0 text-black"
-                  href="/create"
-                >
-                  Create
-                </Link>
+                <>
+                  <Link
+                    className="position-relative p-0 text-black"
+                    href="/create"
+                  >
+                    Crear Cuenta
+                  </Link>
+
+                  <Link
+                    className="position-relative p-0 text-black"
+                    href="/dashboard"
+                  >
+                    Dashboard
+                  </Link>
+                </>
                 :
                 null
             }
@@ -125,6 +147,8 @@ const NavBar = () => {
               }
 
             </Link>
+
+            {/* <SignInSignOutButton/> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

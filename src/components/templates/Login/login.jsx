@@ -1,10 +1,13 @@
 import React, { useState, useContext } from 'react'
 import axios from "axios";
+import { useMsal } from "@azure/msal-react";
 import { useRouter } from "next/router";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import { MyContext } from '@/MyContext';
+import { loginRequest } from "@/authConfig";
 import styles from './login.module.scss'
 const login = () => {
+  const { instance } = useMsal();
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -21,11 +24,11 @@ const login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    await handleLogin("popup");
     try {
       const response = await axios.post("/api/auth/login", credentials);
       if (response.status === 200) {
-        router.push("/dashboard");
+        router.push("/mi-cuenta");
       }
 
       const response2 = await axios.get("/api/profile");
@@ -44,6 +47,13 @@ const login = () => {
     }
   };
 
+  const handleLogin = (loginType) => {
+    if (loginType === "popup") {
+      instance.loginPopup(loginRequest).catch((e) => { console.error(`loginPopup failed: ${e}`) });
+    } else if (loginType === "redirect") {
+      instance.loginRedirect(loginRequest).catch((e) => { console.error(`loginRedirect failed: ${e}`) })
+    };
+  }
   return (
     <Container className="g-0">
       <Form className={styles.customForm} onSubmit={handleSubmit}>

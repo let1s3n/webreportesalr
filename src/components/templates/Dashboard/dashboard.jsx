@@ -1,30 +1,20 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from 'react'
 import { Container } from 'react-bootstrap';
-import { useRouter } from "next/router";
 
-const dashboard = () => {
-  const router = useRouter();
-  const [user, setUser] = useState({
-    email: "",
-    username: "",
-  });
-  const getProfile = async () => {
-    try {
-      const response = await axios.get("/api/profile");
-      setUser({ email: response.data.email, username: response.data.username });
-    } catch (error) {
-      console.log("Error: ", error);
-    }
-  };
-
-  
+const dashboard = ({ graphData }) => {
   return (
-    <Container>
-      <h1>Dashboard</h1>
-      <pre>{JSON.stringify(user, null, 2)}</pre>
-      <button onClick={getProfile}>get profile</button>
-      {/* <button onClick={logout}>Logout</button> */}
+    <Container className="g-0">
+      {
+        (graphData.value).map(item => {
+          return (
+            <div key={item.id}>
+              <pre>{JSON.stringify(item, null, 2)}</pre>
+              <iframe title="prod" width="100%" height="600" src={item.embedUrl + "&autoAuth=true&ctid=a4c27131-7f34-4498-90d7-6efea8bb3ef7"} frameBorder="0" allowFullScreen={true}></iframe>
+            </div>
+          )
+        })
+      
+      }
     </Container>
   )
 }
