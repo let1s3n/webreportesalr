@@ -38,9 +38,9 @@ export default function App({ Component, pageProps }) {
   const [isAdmin, setIsAdmin] = useState(defaultIsAdmin);
   const [isLogged, setIsLogged] = useState(defaultIsLogged);
 
-  /* const router = useRouter();
+  const router = useRouter();
   const navigationClient = new CustomNavigationClient(router);
-  msalInstance.setNavigationClient(navigationClient); */
+  msalInstance.setNavigationClient(navigationClient);
 
   /* useEffect(() => {
     console.log("DAYANE");

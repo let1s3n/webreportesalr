@@ -32,6 +32,7 @@ const login = () => {
 
       console.log("LOGIN RESPONSE STATUS: ", response.status)
       if (response.status === 200) {
+        console.log("CHONAAAAAAAAAAAAa")
         router.push("/mi-cuenta");
       }
 
