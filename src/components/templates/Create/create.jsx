@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import styles from './create.module.scss'
 const create = () => {
   const [params, setParams] = useState({

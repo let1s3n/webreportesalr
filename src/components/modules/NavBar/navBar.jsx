@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import axios from 'axios';
 import SignInSignOutButton from "@/ui-components/SignInSignOutButton";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { MyContext } from '@/MyContext';
 import { loginRequest } from "@/authConfig";
 import styles from './navbar.module.scss';

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Container } from 'react-bootstrap';
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const miCuenta = () => {
   const router = useRouter();

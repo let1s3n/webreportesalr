@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from "axios";
 import { useMsal } from "@azure/msal-react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import { MyContext } from '@/MyContext';
 import { loginRequest } from "@/authConfig";

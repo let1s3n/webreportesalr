@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import "@/sass/app.scss";
 import DefaultLayout from "@/components/layout/DefaultLayout/defaultLayout";
 
