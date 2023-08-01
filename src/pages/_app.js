@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import "@/sass/app.scss";
+import { useCookies } from "@/hooks/useCookies";
 import DefaultLayout from "@/components/layout/DefaultLayout/defaultLayout";
-
+import { serialize } from "cookie";
 import { MsalProvider } from "@azure/msal-react";
 import { PublicClientApplication, EventType } from "@azure/msal-browser";
 import { msalConfig } from "../authConfig";
@@ -37,6 +38,13 @@ export default function App({ Component, pageProps }) {
   }
   const [isAdmin, setIsAdmin] = useState(defaultIsAdmin);
   const [isLogged, setIsLogged] = useState(defaultIsLogged);
+  /* const [saveToCookie, readCookie] = useCookies();
+  const [isAdmin, setIsAdmin] = useState(
+    readCookie("defaultIsAdmin") === "true" ? true : false
+  );
+  const [isLogged, setIsLogged] = useState(
+    readCookie("defaultIsLogged") === "true" ? true : false
+  ); */
 
   const router = useRouter();
   const navigationClient = new CustomNavigationClient(router);
@@ -57,12 +65,14 @@ export default function App({ Component, pageProps }) {
     console.log("isLogged: ", isLogged);
     console.log("isLogged TYPE: ", typeof isLogged);
     localStorage.setItem("isLogged", isLogged);
+    /* saveToCookie("defaultIsLogged", isLogged); */
   }, [isLogged]);
 
   useEffect(() => {
     console.log("isAdmin: ", isAdmin);
     console.log("isAdmin TYPE: ", typeof isAdmin);
     localStorage.setItem("isAdmin", isAdmin);
+    /* saveToCookie("defaultIsAdmin", isAdmin); */
   }, [isAdmin]);
 
   return (
