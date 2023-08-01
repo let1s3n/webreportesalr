@@ -15,16 +15,11 @@ const NavBar = () => {
   const { instance } = useMsal();
   const currentPath = usePathName();
   const [show, setShow] = useState(false);
-  const { isAdmin, isLogged, setIsAdmin, setIsLogged } = useContext(MyContext);
+  const { isAdmin, isLogged } = useContext(MyContext);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const router = useRouter();
-  useEffect(() => {
-    getUser();
-  }, [])
-
-
-
+  
   const logout = async () => {
     handleLogout("popup");
     try {
@@ -37,27 +32,6 @@ const NavBar = () => {
       router.push("/login");
     }
   };
-
-  const getUser = async () => {
-    try {
-      const response = await axios.get("/api/profile");
-
-      if (response.status === 200) {
-        setIsLogged(true);
-        const roles = response.data.roles;
-        for (let role of roles) {
-          if (role.name === "admin") {
-            setIsAdmin(true);
-          }
-        }
-      }
-      console.log("DATA: ", response.data)
-    } catch (error) {
-      setIsAdmin(false);
-      setIsLogged(false);
-      console.log("Error: ", error);
-    }
-  }
 
   const handleLogout = (logoutType) => {
     if (logoutType === "popup") {

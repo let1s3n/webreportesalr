@@ -26,6 +26,7 @@ const login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     handleLogin("popup");
+
     try {
       const response = await axios.post("/api/auth/login", credentials);
       if (response.status === 200) {
@@ -33,11 +34,13 @@ const login = () => {
       }
 
       const response2 = await axios.get("/api/profile");
-      const roles = response2.data.roles;
-      setIsLogged(true);
-      for (let role of roles) {
-        if (role.name === "admin") {
-          setIsAdmin(true);
+      if (response2.status === 200) {
+        setIsLogged(true);
+        const roles = response2.data.roles;
+        for (let role of roles) {
+          if (role.name === "admin") {
+            setIsAdmin(true);
+          }
         }
       }
     } catch (error) {
@@ -60,6 +63,7 @@ const login = () => {
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   }
+
   return (
     <Container className="g-0">
       <Form className={styles.customForm} onSubmit={handleSubmit}>
