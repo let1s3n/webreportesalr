@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import "@/sass/app.scss";
-import { useCookies } from "@/hooks/useCookies";
 import DefaultLayout from "@/components/layout/DefaultLayout/defaultLayout";
-import { serialize } from "cookie";
 import { MsalProvider } from "@azure/msal-react";
 import { PublicClientApplication, EventType } from "@azure/msal-browser";
 import { msalConfig } from "../authConfig";
@@ -29,51 +28,34 @@ msalInstance.initialize().then(() => {
 });
 
 export default function App({ Component, pageProps }) {
-  /* const check = typeof window !== "undefined"; */
-  if (typeof window !== "undefined") {
-    var defaultIsAdmin =
-      localStorage.getItem("isAdmin") === "true" ? true : false;
-    var defaultIsLogged =
-      localStorage.getItem("isLogged") === "true" ? true : false;
-  }
-  const [isAdmin, setIsAdmin] = useState(defaultIsAdmin);
-  const [isLogged, setIsLogged] = useState(defaultIsLogged);
-  /* const [saveToCookie, readCookie] = useCookies();
-  const [isAdmin, setIsAdmin] = useState(
-    readCookie("defaultIsAdmin") === "true" ? true : false
-  );
-  const [isLogged, setIsLogged] = useState(
-    readCookie("defaultIsLogged") === "true" ? true : false
-  ); */
+  const [isLogged, setIsLogged] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const router = useRouter();
   const navigationClient = new CustomNavigationClient(router);
   msalInstance.setNavigationClient(navigationClient);
 
-  /* useEffect(() => {
-    console.log("DAYANE");
-    console.log("localStorage isAdmin: ", localStorage.getItem("isAdmin"));
-    console.log("localStorage isLogged: ", localStorage.getItem("isLogged"));
-    setIsAdmin(localStorage.getItem("isAdmin") === "true" ? true : false);
-    setIsLogged(localStorage.getItem("isLogged") === "true" ? true : false);
-
-    console.log("Napo isLogged: ", isLogged);
-    console.log("Napo isAdmin: ", isAdmin);
-  }, []); */
-
   useEffect(() => {
-    console.log("isLogged: ", isLogged);
-    console.log("isLogged TYPE: ", typeof isLogged);
-    localStorage.setItem("isLogged", isLogged);
-    /* saveToCookie("defaultIsLogged", isLogged); */
-  }, [isLogged]);
+    checkProfile();
+  }, []);
 
-  useEffect(() => {
-    console.log("isAdmin: ", isAdmin);
-    console.log("isAdmin TYPE: ", typeof isAdmin);
-    localStorage.setItem("isAdmin", isAdmin);
-    /* saveToCookie("defaultIsAdmin", isAdmin); */
-  }, [isAdmin]);
+  const checkProfile = async () => {
+    try {
+      const response = await axios.get("/api/profile");
+      if (response.status === 200) {
+        setIsLogged(true);
+
+        const roles = response.data.roles;
+        for (let role of roles) {
+          if (role.name === "admin") {
+            setIsAdmin(true);
+          }
+        }
+      }
+    } catch (error) {
+      console.log("Error: ", error);
+    }
+  };
 
   return (
     <MyContext.Provider value={{ isAdmin, setIsAdmin, isLogged, setIsLogged }}>
