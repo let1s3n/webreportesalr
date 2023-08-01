@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from "axios";
 import { useMsal } from "@azure/msal-react";
 import { useRouter } from "next/router";
@@ -13,7 +13,7 @@ const login = () => {
     email: "",
     password: "",
   });
-  const { setIsAdmin, setIsLogged } = useContext(MyContext);
+  const { isLogged, isAdmin, setIsAdmin, setIsLogged } = useContext(MyContext);
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const handleChange = (e) => {
@@ -29,6 +29,8 @@ const login = () => {
 
     try {
       const response = await axios.post("/api/auth/login", credentials);
+
+      console.log("LOGIN RESPONSE STATUS: ", response.status)
       if (response.status === 200) {
         router.push("/mi-cuenta");
       }
@@ -36,6 +38,7 @@ const login = () => {
       const response2 = await axios.get("/api/profile");
       if (response2.status === 200) {
         setIsLogged(true);
+
         const roles = response2.data.roles;
         for (let role of roles) {
           if (role.name === "admin") {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import "@/sass/app.scss";
 import DefaultLayout from "@/components/layout/DefaultLayout/defaultLayout";
@@ -28,12 +28,42 @@ msalInstance.initialize().then(() => {
 });
 
 export default function App({ Component, pageProps }) {
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
+  /* const check = typeof window !== "undefined"; */
+  if (typeof window !== "undefined") {
+    var defaultIsAdmin =
+      localStorage.getItem("isAdmin") === "true" ? true : false;
+    var defaultIsLogged =
+      localStorage.getItem("isLogged") === "true" ? true : false;
+  }
+  const [isAdmin, setIsAdmin] = useState(defaultIsAdmin);
+  const [isLogged, setIsLogged] = useState(defaultIsLogged);
 
   const router = useRouter();
   const navigationClient = new CustomNavigationClient(router);
   msalInstance.setNavigationClient(navigationClient);
+
+  /* useEffect(() => {
+    console.log("DAYANE");
+    console.log("localStorage isAdmin: ", localStorage.getItem("isAdmin"));
+    console.log("localStorage isLogged: ", localStorage.getItem("isLogged"));
+    setIsAdmin(localStorage.getItem("isAdmin") === "true" ? true : false);
+    setIsLogged(localStorage.getItem("isLogged") === "true" ? true : false);
+
+    console.log("Napo isLogged: ", isLogged);
+    console.log("Napo isAdmin: ", isAdmin);
+  }, []); */
+
+  useEffect(() => {
+    console.log("isLogged: ", isLogged);
+    console.log("isLogged TYPE: ", typeof isLogged);
+    localStorage.setItem("isLogged", isLogged);
+  }, [isLogged]);
+
+  useEffect(() => {
+    console.log("isAdmin: ", isAdmin);
+    console.log("isAdmin TYPE: ", typeof isAdmin);
+    localStorage.setItem("isAdmin", isAdmin);
+  }, [isAdmin]);
 
   return (
     <MyContext.Provider value={{ isAdmin, setIsAdmin, isLogged, setIsLogged }}>

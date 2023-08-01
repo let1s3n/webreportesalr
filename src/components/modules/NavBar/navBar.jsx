@@ -14,7 +14,7 @@ const NavBar = () => {
   const { instance } = useMsal();
   const currentPath = usePathName();
   const [show, setShow] = useState(false);
-  const { isAdmin, isLogged } = useContext(MyContext);
+  const { isAdmin, isLogged, setIsAdmin, setIsLogged } = useContext(MyContext);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const router = useRouter();
@@ -39,6 +39,7 @@ const NavBar = () => {
       instance.logoutRedirect().catch((e) => { console.error(`logoutRedirect failed: ${e}`) });
     }
   }
+
 
   return (
     <Navbar
