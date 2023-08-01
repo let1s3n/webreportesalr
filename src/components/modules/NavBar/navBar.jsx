@@ -1,9 +1,8 @@
-import { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useMsal } from "@azure/msal-react";
 import usePathName from '@/hooks/usePathName';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import axios from 'axios';
 import SignInSignOutButton from "@/ui-components/SignInSignOutButton";
@@ -19,7 +18,7 @@ const NavBar = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const router = useRouter();
-  
+
   const logout = async () => {
     handleLogout("popup");
     try {
