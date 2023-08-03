@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useUpdateEffect } from "react-use";
 import "@/sass/app.scss";
 import DefaultLayout from "@/components/layout/DefaultLayout/defaultLayout";
 import { MsalProvider } from "@azure/msal-react";
@@ -35,26 +36,22 @@ export default function App({ Component, pageProps }) {
   msalInstance.setNavigationClient(navigationClient);
 
   useEffect(() => {
-    if (isLogged) {
-      checkProfile();
-    }
-  }, [isLogged]);
+    check();
+  }, []);
 
-  const checkProfile = async () => {
-    try {
-      const response = await axios.get("/api/profile");
-      if (response.status === 200) {
-        setIsLogged(true);
+  const check = async () => {
+    const response = await axios.get("/api/check");
+    if (response.status === 200) {
+      setIsLogged(true);
 
-        const roles = response.data.roles;
-        for (let role of roles) {
-          if (role.name === "admin") {
-            setIsAdmin(true);
-          }
+      const roles = response.data.roles;
+      for (let role of roles) {
+        if (role.name === "admin") {
+          setIsAdmin(true);
         }
       }
-    } catch (error) {
-      console.log("Error: ", error);
+    } else {
+      console.log("Unsuccess");
     }
   };
 

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import axios from 'axios';
+import { useUpdateEffect } from 'react-use';
 import SignInSignOutButton from "@/ui-components/SignInSignOutButton";
 import { useRouter } from "next/navigation";
 import { MyContext } from '@/MyContext';
@@ -39,8 +40,7 @@ const NavBar = () => {
       instance.logoutRedirect().catch((e) => { console.error(`logoutRedirect failed: ${e}`) });
     }
   }
-
-
+  
   return (
     <Navbar
       className={styles.customNavbar + ' p-0 w-100'}
