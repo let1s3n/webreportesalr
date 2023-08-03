@@ -27,7 +27,7 @@ const login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    handleLogin("redirect")
+    handleLogin("popup")
     try {
       const response = await axios.post("/api/auth/login", credentials);
 
