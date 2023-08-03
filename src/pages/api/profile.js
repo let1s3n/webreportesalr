@@ -15,7 +15,6 @@ export default function profileHandler(req, res) {
       .status(200)
       .json({ email: email, username: username, roles: roles });
   } catch (error) {
-    /* return res.status(401).json({ error: "invalid token" }); */
-    return res.redirect(401, "/login");
+    return res.status(401).json({ error: "invalid token" });
   }
 }

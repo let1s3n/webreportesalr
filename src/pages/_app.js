@@ -54,6 +54,7 @@ export default function App({ Component, pageProps }) {
       }
     } catch (error) {
       console.log("Error: ", error);
+      router.push("/login");
     }
   };
 
