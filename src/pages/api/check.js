@@ -10,4 +10,6 @@ export default function check(req, res) {
       .status(200)
       .json({ email: email, username: username, roles: roles });
   }
+
+  return res.status(202).json("Unsuccess");
 }

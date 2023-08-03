@@ -1,6 +1,6 @@
-@import 'bootstrap/scss/functions';
+@import "bootstrap/scss/functions";
 
-$font-family-sans-serif: 'Rubik', sans-serif;
+$font-family-sans-serif: "Rubik", sans-serif;
 $body-color: #000000;
 $enable-dark-mode: false;
 
@@ -26,8 +26,9 @@ $nav-tabs-link-hover-border-color: transparent;
 $nav-link-hover-color: #ffffff;
 $nav-link-color: #474d66;
 $nav-link-padding-x: 0px;
-
-@import 'bootstrap/scss/variables';
+$modal-inner-padding: 1rem 0px;
+$modal-header-padding: 1rem 1rem 0px;
+@import "bootstrap/scss/variables";
 
 // Esto se tiene que poner en bootstrap 5.3
 /* @import 'bootstrap/scss/variables-dark'; */

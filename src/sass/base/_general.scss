@@ -57,3 +57,10 @@ dl {
     }
   }
 }
+.modal-content {
+  align-items: center;
+  .modal-header {
+    align-self: flex-end;
+    border: none !important;
+  }
+}

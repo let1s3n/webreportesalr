@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import axios from "axios";
 import { useMsal } from "@azure/msal-react";
 import { useRouter } from "next/navigation";
-import { Container, Form, Button, Row, Col } from "react-bootstrap";
+import { Container, Form, Button, Row, Col, Modal } from "react-bootstrap";
 import { MyContext } from '@/MyContext';
 import { loginRequest } from "@/authConfig";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
@@ -13,6 +13,7 @@ const login = () => {
     email: "",
     password: "",
   });
+  const [showAlert, setShowAlert] = useState(false);
   const { isLogged, isAdmin, setIsAdmin, setIsLogged } = useContext(MyContext);
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
@@ -52,6 +53,8 @@ const login = () => {
     } catch (error) {
       setIsAdmin(false);
       setIsLogged(false);
+      setShowAlert(true);
+
       console.log("Error: ", error);
     }
   };
@@ -67,7 +70,7 @@ const login = () => {
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   }
-
+  const handleClose = () => setShowAlert(false);
   return (
     <Container className="g-0">
       <Form className={styles.customForm} onSubmit={handleSubmit}>
@@ -105,6 +108,26 @@ const login = () => {
         <Button className="mx-auto d-block" variant="primary" type="submit">Login</Button>
 
       </Form>
+
+      <Modal show={showAlert} onHide={handleClose}>
+        <Modal.Header closeButton>
+          {/* <Modal.Title>Modal heading</Modal.Title> */}
+        </Modal.Header>
+        <Modal.Body>
+          <h1 className="text-danger">
+            Contraseña Incorrecta!
+          </h1>
+
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
     </Container>
   )
 }
