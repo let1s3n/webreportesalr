@@ -32,7 +32,8 @@ const login = () => {
 
       console.log("LOGIN RESPONSE STATUS: ", response.status)
       if (response.status === 200) {
-        router.push("/mi-cuenta");
+        router.push("/");
+        /* router.replace("/mi-cuenta").then(() => router.refresh()); */
       }
 
       const response2 = await axios.get("/api/profile");
@@ -47,8 +48,6 @@ const login = () => {
         }
       }
     } catch (error) {
-      console.log("ERROR NAPO");
-      console.log("Error: ", error);
       setIsAdmin(false);
       setIsLogged(false);
       console.log("Error: ", error);

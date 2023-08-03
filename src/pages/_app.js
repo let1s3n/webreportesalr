@@ -53,8 +53,6 @@ export default function App({ Component, pageProps }) {
         }
       }
     } catch (error) {
-      console.log("PANETON");
-      router.push("/login");
       console.log("Error: ", error);
     }
   };
