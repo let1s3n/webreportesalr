@@ -30,7 +30,6 @@ msalInstance.initialize().then(() => {
 export default function App({ Component, pageProps }) {
   const [isLogged, setIsLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-
   const router = useRouter();
   const navigationClient = new CustomNavigationClient(router);
   msalInstance.setNavigationClient(navigationClient);
@@ -53,8 +52,7 @@ export default function App({ Component, pageProps }) {
         }
       }
     } catch (error) {
-      console.log("Error: ", error);
-      router.push("/login");
+      /* console.log("Error: ", error); */
     }
   };
 
