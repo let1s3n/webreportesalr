@@ -32,8 +32,9 @@ const login = () => {
 
       console.log("LOGIN RESPONSE STATUS: ", response.status)
       if (response.status === 200) {
-        router.push("/");
+        router.push("/mi-cuenta");
         /* router.replace("/mi-cuenta").then(() => router.refresh()); */
+        /* window.location.href = "/mi-cuenta"; */
       }
 
       const response2 = await axios.get("/api/profile");
