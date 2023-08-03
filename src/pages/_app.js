@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useUpdateEffect } from "react-use";
-import "@/sass/app.scss";
 import DefaultLayout from "@/components/layout/DefaultLayout/defaultLayout";
 import { MsalProvider } from "@azure/msal-react";
 import { PublicClientApplication, EventType } from "@azure/msal-browser";
 import { msalConfig } from "../authConfig";
 import { CustomNavigationClient } from "../utils/NavigationClient";
 import { MyContext } from "../MyContext";
+import "@/sass/app.scss";
 
 export const msalInstance = new PublicClientApplication(msalConfig);
 

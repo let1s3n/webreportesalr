@@ -15,7 +15,6 @@ const dashboard = () => {
 
   useEffect(() => {
     if (!graphData && inProgress === InteractionStatus.None) {
-      console.log("LLEGA ACA");
       callMsGraph()
         .then((response) => setGraphData(response))
         .catch((e) => {

@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { serialize } from "cookie";
 import { dbConnect } from "@/utils/mongoose";
@@ -39,10 +38,7 @@ export default async function loginHandler(req, res) {
         path: "/",
       });
       res.setHeader("Set-Cookie", serialized);
-      /* NextResponse.next().headers.append("Set-Cookie", serialized); */
       return res.status(200).json("login route");
-      /* return res.writeHead(302, { "Location" : "/mi-cuenta" }); */
-      /* return res.redirect(302, req.headers.origin + "/mi-cuenta"); */
     }
   } catch (error) {
     return res.status(401).json({ error: "invalid email or password" });

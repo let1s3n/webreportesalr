@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import axios from "axios";
 import { useMsal } from "@azure/msal-react";
 import { useRouter } from "next/navigation";
@@ -6,7 +6,8 @@ import { Container, Form, Button, Row, Col, Modal } from "react-bootstrap";
 import { MyContext } from '@/MyContext';
 import { loginRequest } from "@/authConfig";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import styles from './login.module.scss'
+import styles from './login.module.scss';
+
 const login = () => {
   const { instance } = useMsal();
   const [credentials, setCredentials] = useState({
@@ -30,14 +31,10 @@ const login = () => {
 
     try {
       const response = await axios.post("/api/auth/login", credentials);
-
-      console.log("LOGIN RESPONSE STATUS: ", response.status)
       if (response.status === 200) {
         handleLogin("popup");
         /* document.getElementById("logoClick").click(); */
         router.push("/mi-cuenta");
-        /* router.replace("/mi-cuenta").then(() => router.refresh()); */
-        /* window.location.href = "/mi-cuenta"; */
       }
       const response2 = await axios.get("/api/profile");
       if (response2.status === 200) {
