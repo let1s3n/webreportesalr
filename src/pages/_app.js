@@ -57,16 +57,12 @@ export default function App({ Component, pageProps }) {
   }; */
 
   return (
-    <MsalProvider instance={msalInstance}>
-      <MyContext.Provider
-        value={{ isAdmin, setIsAdmin, isLogged, setIsLogged }}
-      >
+    <MyContext.Provider value={{ isAdmin, setIsAdmin, isLogged, setIsLogged }}>
+      <MsalProvider instance={msalInstance}>
         <DefaultLayout>
-          <ErrorBoundary>
-            <Component {...pageProps} />
-          </ErrorBoundary>
+          <Component {...pageProps} />
         </DefaultLayout>
-      </MyContext.Provider>
-    </MsalProvider>
+      </MsalProvider>
+    </MyContext.Provider>
   );
 }
