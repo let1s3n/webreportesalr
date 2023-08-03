@@ -1,14 +1,14 @@
 // Config object to be passed to Msal on creation
 export const msalConfig = {
   auth: {
-      /* clientId: "b5c2e510-4a17-4feb-b219-e55aa5b74144", */
-      clientId: "0253a612-c044-40dd-9c4a-a8e5d67d1717",
-      authority: "https://login.microsoftonline.com/common",
-      redirectUri: "/mi-cuenta",
-      postLogoutRedirectUri: "/",
+    /* clientId: "b5c2e510-4a17-4feb-b219-e55aa5b74144", */
+    clientId: "0253a612-c044-40dd-9c4a-a8e5d67d1717",
+    authority: "https://login.microsoftonline.com/common",
+    redirectUri: "/",
+    postLogoutRedirectUri: "/",
   },
   system: {
-      allowNativeBroker: false, // Disables WAM Broker
+    allowNativeBroker: false, // Disables WAM Broker
   },
 };
 
