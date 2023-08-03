@@ -40,7 +40,7 @@ const NavBar = () => {
       instance.logoutRedirect().catch((e) => { console.error(`logoutRedirect failed: ${e}`) });
     }
   }
-  
+
   return (
     <Navbar
       className={styles.customNavbar + ' p-0 w-100'}
@@ -50,6 +50,7 @@ const NavBar = () => {
     >
       <Container className="g-0 py-4 px-3 px-md-5" style={{ columnGap: '5rem' }}>
         <Navbar.Brand
+          id="logoClick"
           href="/"
           className="p-0 m-0"
         >
