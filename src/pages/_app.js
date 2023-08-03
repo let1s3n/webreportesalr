@@ -35,8 +35,10 @@ export default function App({ Component, pageProps }) {
   msalInstance.setNavigationClient(navigationClient);
 
   useEffect(() => {
-    checkProfile();
-  }, []);
+    if (isLogged) {
+      checkProfile();
+    }
+  }, [isLogged]);
 
   const checkProfile = async () => {
     try {
