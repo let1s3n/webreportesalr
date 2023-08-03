@@ -31,9 +31,9 @@ msalInstance.initialize().then(() => {
 export default function App({ Component, pageProps }) {
   const [isLogged, setIsLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const router = useRouter();
+  /* const router = useRouter();
   const navigationClient = new CustomNavigationClient(router);
-  msalInstance.setNavigationClient(navigationClient);
+  msalInstance.setNavigationClient(navigationClient); */
 
   useEffect(() => {
     check();

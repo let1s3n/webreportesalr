@@ -26,8 +26,8 @@ const login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    handleLogin("popup");
 
+    handleLogin("redirect")
     try {
       const response = await axios.post("/api/auth/login", credentials);
 
@@ -35,8 +35,9 @@ const login = () => {
       if (response.status === 200) {
         /* router.refresh(); */
         console.log("MOTTI");
-        document.getElementById("logoClick").click();
-        /* router.push("/mi-cuenta"); */
+        /* document.getElementById("logoClick").click(); */
+
+        router.push("/mi-cuenta");
         /* router.replace("/mi-cuenta").then(() => router.refresh()); */
         /* window.location.href = "/mi-cuenta"; */
       }
