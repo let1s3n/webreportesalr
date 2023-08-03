@@ -34,7 +34,7 @@ const login = () => {
       if (response.status === 200) {
         handleLogin("popup");
         /* document.getElementById("logoClick").click(); */
-        router.push("/mi-cuenta");
+        router.push("/mi-cuenta", undefined, { unstable_skipClientCache: true });
       }
       const response2 = await axios.get("/api/profile");
       if (response2.status === 200) {
