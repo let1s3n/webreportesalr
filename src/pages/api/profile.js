@@ -17,6 +17,6 @@ export default function profileHandler(req, res) {
   } catch (error) {
     /* return res.status(401).json({ error: "invalid token" }); */
     console.log("NAPO: ", req.headers.referer);
-    return res.redirect(401, req.headers.referer);
+    return res.redirect(301, req.headers.referer);
   }
 }
