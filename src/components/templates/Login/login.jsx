@@ -37,7 +37,6 @@ const login = () => {
         /* router.replace("/mi-cuenta").then(() => router.refresh()); */
         /* window.location.href = "/mi-cuenta"; */
       }
-
       const response2 = await axios.get("/api/profile");
       if (response2.status === 200) {
         setIsLogged(true);

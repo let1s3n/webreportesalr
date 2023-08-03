@@ -52,7 +52,8 @@ export default function App({ Component, pageProps }) {
         }
       }
     } catch (error) {
-      /* console.log("Error: ", error); */
+      console.log("Error: ", error);
+      router.replace("/mi-cuenta");
     }
   };
 
