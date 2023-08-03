@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import ErrorBoundary from "@/components/templates/ErrorBoundary/errorBoundary";
 import { useUpdateEffect } from "react-use";
 import DefaultLayout from "@/components/layout/DefaultLayout/defaultLayout";
 import { MsalProvider } from "@azure/msal-react";
@@ -61,7 +62,9 @@ export default function App({ Component, pageProps }) {
         value={{ isAdmin, setIsAdmin, isLogged, setIsLogged }}
       >
         <DefaultLayout>
-          <Component {...pageProps} />
+          <ErrorBoundary>
+            <Component {...pageProps} />
+          </ErrorBoundary>
         </DefaultLayout>
       </MyContext.Provider>
     </MsalProvider>

@@ -32,9 +32,10 @@ const login = () => {
     try {
       const response = await axios.post("/api/auth/login", credentials);
       if (response.status === 200) {
-        handleLogin("popup");
+        
         /* document.getElementById("logoClick").click(); */
         router.replace("/mi-cuenta");
+        handleLogin("popup");
       }
       const response2 = await axios.get("/api/profile");
       if (response2.status === 200) {
