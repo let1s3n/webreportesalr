@@ -5,6 +5,7 @@ export async function middleware(request) {
   const jwt = request.cookies.get("myTokenName");
   const path = request.nextUrl.pathname;
   if (jwt === undefined) {
+    console.log("REQ URL: ", request.url);
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
@@ -15,18 +16,19 @@ export async function middleware(request) {
     );
 
     // Aca agregar rutas que requieren permisos de administrador
-    if (["/create"].includes(path)) {
+    /* if (["/create", "/dashboard"].includes(path)) {
       return isAdmin(request, payload);
-    }
+    } */
 
     return NextResponse.next();
   } catch (error) {
     console.error(error);
+    console.log("REQ URL 2: ", request.url);
     return NextResponse.redirect(new URL("/login", request.url));
   }
 }
 
-export async function isAdmin(request, payload) {
+export function isAdmin(request, payload) {
   const { roles } = payload;
 
   for (let role of roles) {
@@ -35,9 +37,9 @@ export async function isAdmin(request, payload) {
     }
   }
 
-  return NextResponse.redirect(new URL("/mi-cuenta", request.url));
+  /* return NextResponse.redirect(new URL("/mi-cuenta", request.url)); */
 }
 
 export const config = {
-  matcher: ["/", "/mi-cuenta", "/create", "/admin/:path*"],
+  matcher: ["/", "/mi-cuenta", "/create", "/dashboard", "/admin/:path*"],
 };
