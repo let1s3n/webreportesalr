@@ -41,7 +41,7 @@ export default function App({ Component, pageProps }) {
 
   const checkProfile = async () => {
     try {
-      const response = await fetch("/api/profile");
+      const response = await axios.get("/api/profile");
       if (response.status === 200) {
         setIsLogged(true);
 
