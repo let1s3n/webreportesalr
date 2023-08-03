@@ -27,14 +27,12 @@ const login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-
     try {
       const response = await axios.post("/api/auth/login", credentials);
       if (response.status === 200) {
         
         /* document.getElementById("logoClick").click(); */
-        router.replace("/mi-cuenta");
+        router.push("/mi-cuenta");
         handleLogin("popup");
       }
       const response2 = await axios.get("/api/profile");
