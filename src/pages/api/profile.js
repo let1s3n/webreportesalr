@@ -15,6 +15,8 @@ export default function profileHandler(req, res) {
       .status(200)
       .json({ email: email, username: username, roles: roles });
   } catch (error) {
-    return res.status(401).json({ error: "invalid token" });
+    /* return res.status(401).json({ error: "invalid token" }); */
+    console.log("NAPO: ", req.headers.referer);
+    return res.redirect(401, req.headers.referer);
   }
 }
