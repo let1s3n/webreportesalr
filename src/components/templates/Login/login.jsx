@@ -32,6 +32,7 @@ const login = () => {
 
       console.log("LOGIN RESPONSE STATUS: ", response.status)
       if (response.status === 200) {
+        /* router.refresh(); */
         router.push("/mi-cuenta");
         /* router.replace("/mi-cuenta").then(() => router.refresh()); */
         /* window.location.href = "/mi-cuenta"; */

@@ -38,8 +38,8 @@ export default async function loginHandler(req, res) {
     });
     res.setHeader("Set-Cookie", serialized);
     /* NextResponse.next().headers.append("Set-Cookie", serialized); */
-    return res.json("login route");
-    
+    /* return res.json("login route"); */
+    return res.redirect(200, "/mi-cuenta");
   }
   /* return NextResponse.json(
     { error: "invalid email or password" },
