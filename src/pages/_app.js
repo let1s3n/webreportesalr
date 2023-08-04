@@ -36,7 +36,7 @@ export default function App({ Component, pageProps }) {
   const navigationClient = new CustomNavigationClient(router);
   msalInstance.setNavigationClient(navigationClient);
 
-  /* useEffect(() => {
+  useEffect(() => {
     check();
   }, []);
 
@@ -54,7 +54,7 @@ export default function App({ Component, pageProps }) {
     } else {
       console.log("Unsuccess");
     }
-  }; */
+  };
 
   return (
     <MyContext.Provider value={{ isAdmin, setIsAdmin, isLogged, setIsLogged }}>
