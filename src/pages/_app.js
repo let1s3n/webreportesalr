@@ -12,9 +12,18 @@ import { MyContext } from "../MyContext";
 import "@/sass/app.scss";
 
 export const msalInstance = new PublicClientApplication(msalConfig);
-
-msalInstance.initialize().then(() => {
-  // Account selection logic is app dependent. Adjust as needed for different use cases.
+msalInstance.addEventCallback((event) => {
+  try {
+    if (event.eventType === EventType.LOGIN_SUCCESS && event.payload.account) {
+      const account = event.payload.account;
+      msalInstance.setActiveAccount(account);
+    }
+  } catch (error) {
+    console.error("Something wrong in msalInstance.addEventCallback - ", error);
+  }
+});
+/* msalInstance.initialize().then(() => {
+  
   const accounts = msalInstance.getAllAccounts();
   console.log("Accounts: ", accounts);
   if (accounts.length > 0) {
@@ -23,11 +32,12 @@ msalInstance.initialize().then(() => {
 
   msalInstance.addEventCallback((event) => {
     if (event.eventType === EventType.LOGIN_SUCCESS && event.payload.account) {
+      console.log("EVENT PAYLOAD: ", event.payload.account);
       const account = event.payload.account;
       msalInstance.setActiveAccount(account);
     }
   });
-});
+}); */
 
 export default function App({ Component, pageProps }) {
   const [isLogged, setIsLogged] = useState(false);

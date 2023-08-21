@@ -4,7 +4,7 @@ export const msalConfig = {
     /* clientId: "b5c2e510-4a17-4feb-b219-e55aa5b74144", */
     clientId: "0253a612-c044-40dd-9c4a-a8e5d67d1717",
     authority: "https://login.microsoftonline.com/common",
-    redirectUri: "/",
+    redirectUri: "/mi-cuenta",
     postLogoutRedirectUri: "/",
   },
   system: {

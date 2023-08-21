@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from "axios";
 import { useMsal } from "@azure/msal-react";
 import { useRouter } from "next/navigation";
@@ -10,6 +10,7 @@ import styles from './login.module.scss';
 
 const login = () => {
   const { instance } = useMsal();
+  const activeAccount = instance.getActiveAccount();
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -30,10 +31,11 @@ const login = () => {
     try {
       const response = await axios.post("/api/auth/login", credentials);
       if (response.status === 200) {
-        
+
         /* document.getElementById("logoClick").click(); */
+
+        handleLogin("redirect");
         router.push("/mi-cuenta");
-        handleLogin("popup");
       }
       const response2 = await axios.get("/api/profile");
       if (response2.status === 200) {
@@ -67,6 +69,13 @@ const login = () => {
     setShowPassword(!showPassword);
   }
   const handleClose = () => setShowAlert(false);
+
+  useEffect(() => {
+    if (activeAccount) {
+      console.log("activeAccount: ", activeAccount)
+      router.push("/mi-cuenta")
+    }
+  }, [activeAccount]);
   return (
     <Container className="g-0">
       <Form className={styles.customForm} onSubmit={handleSubmit}>
